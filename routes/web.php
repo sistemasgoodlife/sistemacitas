@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -39,7 +40,8 @@ Route::middleware(['auth', 'doctor'])->group(function(){
 Route::middleware('auth')->group(function(){
     Route::get('/reservarcitas/create', [App\Http\Controllers\AppointmentController::class, 'create']);
     Route::post('/reservarcitas', [App\Http\Controllers\AppointmentController::class, 'store']);
-    Route::post('/miscitas', [App\Http\Controllers\AppointmentController::class, 'index']);
+    Route::get('/miscitas', [App\Http\Controllers\AppointmentController::class, 'index']);
+    Route::post('/miscitas/{{appointment}}/cancel', [App\Http\Controllers\AppointmentController::class, 'cancel']);
 
     //JSON
     Route::get('/especialidades/{specialty}/medicos', [App\Http\Controllers\Api\SpecialtyController::class, 'doctors']);
