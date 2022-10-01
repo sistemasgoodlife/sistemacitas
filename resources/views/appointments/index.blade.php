@@ -50,7 +50,7 @@
                             @include('appointments.pending-appointments')
                         </div>
                         <div class="tab-pane fade" id="historial" role="tabpanel">
-                            @include('appointments.old-appointments')
+                            @include('appointments.old-appointments ')
                         </div>
                     </div>
                 </div>

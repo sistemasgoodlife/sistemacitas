@@ -3,6 +3,7 @@
 @section('content')
 <form action="{{ url('/horario') }}" method="POST">
     @csrf
+
     <div class="card shadow">
         <div class="card-header border-0">
           <div class="row align-items-center">
@@ -49,7 +50,7 @@
             <tbody>
                 @foreach ($horarios as $key => $horario)
                     <tr>
-                        <th>{{ $days[$key] }}</th>
+                        <th>{{ $horario[$key] }}</th>
                         <td>
                             <label class="custom-toggle">
                                 <input type="checkbox" name="active[]" value="{{ $key }}"

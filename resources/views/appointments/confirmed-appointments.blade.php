@@ -3,7 +3,6 @@
     <table class="table align-items-center table-flush">
       <thead class="thead-light">
         <tr>
-          <th scope="col">Descripcion</th>
           <th scope="col">Especialidad</th>
           <th scope="col">Médico</th>
           <th scope="col">Fecha</th>
@@ -17,34 +16,25 @@
           @foreach ($confirmedAppointments as $cita)
           <tr>
               <th scope="row">
-              {{ $cita->description }}
+                {{ $cita->specialty->name }}
               </th>
               <td>
-              {{ $cita->specialty->name }}
+                {{ $cita->doctor->name }}
               </td>
               <td>
-                  {{ $cita->doctor->name }}
+                {{ $cita->scheduled_date }}
               </td>
               <td>
-                  {{ $cita->scheduled_date }}
+                {{ $cita->Scheduled_Time_12 }}
               </td>
               <td>
-                  {{ $cita->Scheduled_Time_12 }}
+                {{ $cita->type }}
               </td>
               <td>
-                  {{ $cita->type }}
+                {{ $cita->status }}
               </td>
               <td>
-                  {{ $cita->status }}
-              </td>
-              <td>
-              <form action="{{ url('/miscitas/'.$cita->id) }}" method="POST">
-                  @csrf
-                  @method('DELETE')
-
-                  <button type="submit" class="btn btn-sm btn-danger" title="Cancelar cita">Cancelar</button>
-
-              </form>
+                <a href="{{ url('/miscitas/'.$cita->id.'/cancel') }}" class="btn btn-sm btn-danger" title="Cancelar cita">Cancelar</a>
               </td>
           </tr>
         @endforeach

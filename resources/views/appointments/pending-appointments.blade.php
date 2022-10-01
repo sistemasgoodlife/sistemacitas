@@ -3,7 +3,6 @@
     <table class="table align-items-center table-flush">
       <thead class="thead-light">
         <tr>
-          <th scope="col">Descripcion</th>
           <th scope="col">Especialidad</th>
           <th scope="col">Médico</th>
           <th scope="col">Fecha</th>
@@ -16,22 +15,19 @@
           @foreach ($pendingAppointments as $cita)
           <tr>
               <th scope="row">
-              {{ $cita->description }}
+              {{ $cita->specialty->name }}
               </th>
               <td>
-              {{ $cita->specialty->name }}
+              {{ $cita->doctor->name }}
               </td>
               <td>
-                  {{ $cita->doctor->name }}
+              {{ $cita->scheduled_date }}
               </td>
               <td>
-                  {{ $cita->scheduled_date }}
+              {{ $cita->Scheduled_Time_12 }}    
               </td>
               <td>
-                  {{ $cita->Scheduled_Time_12 }}
-              </td>
-              <td>
-                  {{ $cita->type }}
+              {{ $cita->type }}
               </td>
               <td>
 

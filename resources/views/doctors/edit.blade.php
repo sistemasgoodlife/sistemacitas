@@ -18,7 +18,9 @@
                   <h3 class="mb-0">Editar médico</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="{{ url('/medicos') }}" class="btn btn-sm btn-success"> <i class="fas fa-chevron-left"></i>Atrás</a>
+                  <a href="{{ url('/medicos') }}" class="btn btn-sm btn-success"> 
+                    <i class="fas fa-chevron-left"></i>
+                    Atrás</a>
                 </div>
               </div>
             </div>

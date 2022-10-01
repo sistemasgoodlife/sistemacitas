@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Interfaces\HorarioServiceInterface;
 use App\Http\Controllers\Controller;
-use App\Models\Horarios;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\Horarios;
 
 class HorarioController extends Controller
 {

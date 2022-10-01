@@ -36,4 +36,8 @@ class Appointment extends Model
             ->format('g:i A');
     }
 
+    public function cancellation(){
+        return $this->hasOne(CancelledAppointment::class);
+    }
+
 }

@@ -13,10 +13,10 @@ class HorarioController extends Controller
     private $days = [
         'Lunes',
         'Martes',
-        'Miércoles',
+        'Miercoles',
         'Jueves',
         'Viernes',
-        'Sábado'
+        'Sabado'
     ];
 
     public function edit(){
@@ -55,10 +55,11 @@ class HorarioController extends Controller
             if($morning_start[$i] > $morning_end[$i]){
                 $errors [] = 'Existe un error en el intérvalo de las horas de turno de la mañana del día'. $this->days[$i] .'.';
             }
-            if($afternoo_start[$i] > $afternoon_end[$i]){
+            if($afternoon_start[$i] > $afternoon_end[$i]){
                 $errors [] = 'Existe un error en el intérvalo de las horas de turno de la tarde del día'. $this->days[$i] .'.';
             }
-            Horarios::updateOrCreate(
+
+            $horarios = Horarios::updateOrCreate(
                 [
                     'day' => $i,
                     'user_id' => auth()->id()
