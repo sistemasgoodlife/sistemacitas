@@ -4,7 +4,7 @@
 
 <div class="row">
         <div class="col-md-12 mb-4">
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
@@ -288,7 +288,7 @@
                 </tbody>
               </table>
             </div>
-          </div>
-        </div>
-      </div>
+          </div>--}}
+        </div> 
+</div>
 @endsection

@@ -25,9 +25,15 @@
                     <dd>
                         <strong>Hora de atención: </strong>{{ $appointment->scheduled_time_12 }}
                     </dd>
-                    <dd>
-                        <strong>Doctor: </strong>{{ $appointment->doctor->name }}
-                    </dd>
+                    @if ($role == 'paciente' || $role == 'admin')
+                        <dd>
+                            <strong>Doctor: </strong> {{$appointment->doctor->name}}
+                        </dd>
+                    @elseif ($role == 'doctor' || $role == 'admin')
+                        <dd>
+                            <strong>Paciente: </strong> {{$appointment->patient->name}}
+                        </dd>
+                    @endif
                     <dd>
                         <strong>Especialidad: </strong>{{ $appointment->specialty->name }}
                     </dd>
@@ -44,29 +50,31 @@
                     </dd>
                 </ul>
 
-                <div class="alert bg-lite text-primary">
-                    <h3>Detalles de la cancelación</h3>
-                    @if ($appointment->cancellation)
-                    <ul>
-                        <li>
-                            <strong>Fecha de cancelación: </strong>
-                            {{ $appointment->cancellation->created_at }}
-                        </li>
-                        <li>
-                            <strong>La cita fue cancelada por: </strong>
-                            {{ $appointment->cancellation->cancelled_by->name }}
-                        </li>
-                        <li>
-                            <strong>Motivo de la cancelación: </strong>
-                            {{ $appointment->cancellation->justification }}
-                        </li>
-                    </ul>
-                    @else
-                    <ul>
-                        <li>La cita fue cancelada antes de su confirmación.</li>
-                    </ul>
-                    @endif
-                </div>
+                @if ($appointment->status == 'Cancelada')
+                    <div class="alert bg-lite text-primary">
+                        <h3>Detalles de la cancelación</h3>
+                        @if ($appointment->cancellation)
+                        <ul>
+                            <li>
+                                <strong>Fecha de cancelación: </strong>
+                                {{ $appointment->cancellation->created_at }}
+                            </li>
+                            <li>
+                                <strong>La cita fue cancelada por: </strong>
+                                {{ $appointment->cancellation->cancelled_by->name }}
+                            </li>
+                            <li>
+                                <strong>Motivo de la cancelación: </strong>
+                                {{ $appointment->cancellation->justification }}
+                            </li>
+                        </ul>
+                        @else
+                        <ul>
+                            <li>La cita fue cancelada antes de su confirmación.</li>
+                        </ul>
+                        @endif
+                    </div>
+                @endif
 
             </div>
             

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -16,7 +16,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth', 'admin'])->group(function(){
     //rutas especialidades
     Route::get('/especialidades', [App\Http\Controllers\Admin\SpecialtyController::class, 'index']);
-
     Route::get('/especialidades/create', [App\Http\Controllers\Admin\SpecialtyController::class, 'create']);
     Route::get('/especialidades/{specialty}/edit', [App\Http\Controllers\Admin\SpecialtyController::class, 'edit']);
     Route::post('/especialidades', [App\Http\Controllers\Admin\SpecialtyController::class, 'sendData']);
@@ -30,6 +29,12 @@ Route::middleware(['auth', 'admin'])->group(function(){
 
     //rutas pacientes
     Route::resource('pacientes', 'App\Http\Controllers\Admin\PatientController');
+
+    //Rutas reportes
+    Route::get('/reportes/citas/line', [App\Http\Controllers\Admin\ChartController::class, 'appointments']);
+    Route::get('/reportes/doctors/column', [App\Http\Controllers\Admin\ChartController::class, 'doctors']);
+
+    Route::get('/reportes/doctors/column/data', [App\Http\Controllers\Admin\ChartController::class, 'doctorsJson']);
 });
 
 Route::middleware(['auth', 'doctor'])->group(function(){
@@ -43,6 +48,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/miscitas', [App\Http\Controllers\AppointmentController::class, 'index']);
     Route::get('/miscitas/{appointment}/', [App\Http\Controllers\AppointmentController::class, 'show']);
     Route::post('/miscitas/{appointment}/cancel', [App\Http\Controllers\AppointmentController::class, 'cancel']);
+    Route::post('/miscitas/{appointment}/confirm', [App\Http\Controllers\AppointmentController::class, 'confirm']);
+
     Route::get('/miscitas/{appointment}/cancel', [App\Http\Controllers\AppointmentController::class, 'formCancel']);
 
     //JSON

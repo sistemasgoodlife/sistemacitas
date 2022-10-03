@@ -23,9 +23,17 @@
                     {{ session('notification') }}
                   </div>
               @endif
-
-                <p>Se cancelara tu cita con el médico <b>{{ $appointment->doctor->name }}</b>
-                    para el día <b>{{ $appointment->scheduled_date }}</b>. </p>
+                  @if ($role == 'paciente')
+                    <p>Se cancelara tu cita con el médico <b>{{ $appointment->doctor->name }}</b>
+                      para el día <b>{{ $appointment->scheduled_date }}</b>. </p>
+                  @elseif ($role == 'doctor')
+                    <p>Se cancelara la cita del paciente <b>{{ $appointment->patient->name }}</b>
+                      para el día <b>{{ $appointment->scheduled_date }}</b>. </p>
+                  @else
+                    <p>Se cancelara la cita del paciente <b>{{ $appointment->patient->name }}</b>
+                      que será atendido por el doctor <b>{{ $appointment->doctor->name }}</b>
+                      para el día <b>{{ $appointment->scheduled_date }}</b>. </p>
+                  @endif
                 
                 <form action="{{ url('/miscitas/'.$appointment->id.'/cancel') }}" method="POST">
                     @csrf
